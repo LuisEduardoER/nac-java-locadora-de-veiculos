@@ -96,14 +96,22 @@ public class Clientes extends HttpServlet {
 	
 	private void atualizar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Cliente marca = new Cliente();
+		Cliente c = new Cliente();
 		
-		marca.setId(Integer.parseInt(request.getParameter("id")));
+		c.setId(Integer.parseInt(request.getParameter("id")));
+		c.setNome(request.getParameter("nome"));
+		c.setSobrenome(request.getParameter("sobrenome"));
+		c.setCpf(request.getParameter("cpf"));
+		c.setLogradouro(request.getParameter("logradouro"));
+		c.setLogradouro_num(request.getParameter("num"));
+		c.setBairro(request.getParameter("bairro"));
+		c.setCep(request.getParameter("cep"));
+		c.setNascimento(request.getParameter("nascimento"));
 		
-		if(dao.atualizarCliente(marca)){
-			request.setAttribute("status", "Cliente atualizada com sucesso!");
+		if(dao.atualizarCliente(c)){
+			request.setAttribute("status", "Cliente atualizado com sucesso!");
 		} else{
-			request.setAttribute("status", "Ocorreu uma falha ao atualizar a marca.");
+			request.setAttribute("status", "Ocorreu uma falha ao atualizar cliente.");
 		}
 		
 		listar(request, response);

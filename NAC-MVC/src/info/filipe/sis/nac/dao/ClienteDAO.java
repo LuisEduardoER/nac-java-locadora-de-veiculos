@@ -31,9 +31,9 @@ public class ClienteDAO {
 		String logradouro_num = c.getLogradouro_num();
 		String bairro = c.getBairro();
 		String cep = c.getCep();
-		//String nascimento = c.getNascimento();
+		String nascimento = c.getNascimento();
 
-		String sql = "INSERT INTO clientes VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO clientes VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, nome);
@@ -43,7 +43,7 @@ public class ClienteDAO {
 			stmt.setString(5, logradouro_num);
 			stmt.setString(6, bairro);
 			stmt.setString(7, cep);
-			//stmt.setString(8, nascimento);
+			stmt.setString(8, nascimento);
 
 			if (stmt.executeUpdate() == 1) {
 				return true;
@@ -58,7 +58,7 @@ public class ClienteDAO {
 	
 	public Boolean deletarCliente(int id){
 		
-		String sql = "DELETE FROM clientes where idcliente = ?";
+		String sql = "DELETE FROM clientes where id = ?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
@@ -75,7 +75,7 @@ public class ClienteDAO {
 	
 	public Boolean atualizarCliente(Cliente c){
 		
-		String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, cpf = ?, logradouro = ?, logradouro_num = ?, bairro = ?, cep = ? WHERE idclientes = ?;";
+		String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, cpf = ?, logradouro = ?, logradouro_num = ?, bairro = ?, cep = ?, nascimento = ? WHERE id = ?;";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, c.getNome());
@@ -85,7 +85,8 @@ public class ClienteDAO {
 			stmt.setString(5, c.getLogradouro_num());
 			stmt.setString(6, c.getBairro());
 			stmt.setString(7, c.getCep());
-			stmt.setInt(8, c.getId());
+			stmt.setString(8, c.getNascimento());
+			stmt.setInt(9, c.getId());
 
 			if (stmt.executeUpdate() == 1) {
 				return true;
@@ -117,6 +118,7 @@ public class ClienteDAO {
 				c.setLogradouro_num(result.getString(6));
 				c.setBairro(result.getString(7));
 				c.setCep(result.getString(8));
+				c.setNascimento(result.getString(9));
 				cliente.add(c);
 			}
 			
@@ -127,7 +129,7 @@ public class ClienteDAO {
 	}
 	
 	public Cliente getPK(int id){
-		String sql = "SELECT * FROM clientes where idcliente = ?";
+		String sql = "SELECT * FROM clientes where id = ?";
 		Cliente c = new Cliente();
 		
 		try {
@@ -145,6 +147,7 @@ public class ClienteDAO {
 				c.setLogradouro_num(result.getString(6));
 				c.setBairro(result.getString(7));
 				c.setCep(result.getString(8));
+				c.setNascimento(result.getString(9));
 			}
 			
 		} catch (SQLException ex) {

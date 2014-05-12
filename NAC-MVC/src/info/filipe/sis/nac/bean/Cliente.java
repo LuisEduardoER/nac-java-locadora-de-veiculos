@@ -1,6 +1,7 @@
 package info.filipe.sis.nac.bean;
 
 
+
 public class Cliente {
 	
 	private String nome, sobrenome, cpf, logradouro, logradouro_num, bairro, cep, nascimento;
@@ -48,6 +49,8 @@ public class Cliente {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+
 	public String getNascimento() {
 		return nascimento;
 	}
