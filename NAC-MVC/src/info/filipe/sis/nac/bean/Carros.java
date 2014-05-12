@@ -3,9 +3,8 @@ package info.filipe.sis.nac.bean;
 public class Carros {
 
 	private String placa, modelo;
-	private Marca marca;
 	private float km;
-	private int id, ano, idpreco;
+	private int id, ano, idpreco, idmarca;
 	
 	public String getPlaca() {
 		return placa;
@@ -19,11 +18,11 @@ public class Carros {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public Marca getMarca() {
-		return marca;
+	public int getIdmarca() {
+		return idmarca;
 	}
-	public void setMarca(Marca marca) {
-		this.marca = marca;
+	public void setIdmarca(int idmarca) {
+		this.idmarca = idmarca;
 	}
 	public float getKm() {
 		return km;
