@@ -32,13 +32,13 @@ public class Carros extends HttpServlet {
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String pagina = "clientes.jsp";
+		String pagina = "carros.jsp";
 
-		ArrayList<Carro> carros = new ArrayList<Carro>();
+		ArrayList<Carro> ca = new ArrayList<Carro>();
 
-		carros = dao.getAll();
+		ca = dao.getAll();
 		
-		request.setAttribute("listagemClientes", carros);
+		request.setAttribute("listagemCarros", ca);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);
