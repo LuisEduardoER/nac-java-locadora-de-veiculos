@@ -17,7 +17,7 @@
 	<form action="clientes" method="post">
 		<c:choose>
 			<c:when test="${edicao != null && edicao.equals('true')}">
-				<p>Digite a nova marca e confirme para atualizar</p>
+				<p>Digite os dados corretos e confirme para atualizar</p>
 				<input type="hidden" value="false" name="cadastro">
 				<input type="hidden" value="${clienteedit.id}" name="id">
 				<table>
@@ -35,6 +35,8 @@
 							placeholder="Bairro" value="${clienteedit.bairro}" /></td>
 							<td><input type="text" name="cep"
 							placeholder="CEP" value="${clienteedit.cep}" /></td>
+							<td><input type="text" name="nascimento"
+							placeholder="Nascimento" value="${clienteedit.nascimento}" /></td>
 						<td><input type="submit" value="Salvar" name="btnSalvar"></td>
 					</tr>
 				</table>
@@ -78,6 +80,7 @@
 			<td width="10px">Numero</td>
 			<td width="100px">Bairro</td>
 			<td width="100px">CEP</td>
+			<td width="100px">Nascimento</td>
 			<td> </td>
 		</tr>
 
@@ -93,6 +96,7 @@
 						<td>${d.logradouro_num}</td>
 						<td>${d.bairro}</td>
 						<td>${d.cep}</td>
+						<td>${d.nascimento}</td>
 						<td><a href="clientes?delete=1&id=${d.id}">X</a></td>
 					</tr>
 				</c:forEach>
