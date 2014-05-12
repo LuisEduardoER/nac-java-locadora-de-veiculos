@@ -1,6 +1,6 @@
 package info.filipe.sis.nac.bean;
 
-public class Carros {
+public class Carro {
 
 	private String placa, modelo;
 	private float km;
