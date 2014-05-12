@@ -86,7 +86,7 @@ public class CarroDAO {
 	
 	public ArrayList<Carros> getAll(){
 		
-		String sql = "SELECT * FROM clientes";
+		String sql = "SELECT * FROM carros";
 		
 		ArrayList<Carros> listcarros = new ArrayList<Carros>();
 		
@@ -112,6 +112,32 @@ public class CarroDAO {
 		
 		return listcarros;
 		
+	}
+	
+	public Carros getPK(int id){
+		String sql = "SELECT * FROM carros where id = ?";
+		Carros ca = new Carros();
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			
+			ResultSet result = stmt.executeQuery();
+			
+			while (result.next()) {					
+				ca.setId(result.getInt(1));
+				ca.setIdmarca(result.getInt(2));
+				ca.setModelo(result.getString(3));
+				ca.setPlaca(result.getString(4));
+				ca.setAno(result.getInt(5));
+				ca.setKm(result.getFloat(6));
+				ca.setIdpreco(result.getInt(7));
+			}
+			
+		} catch (SQLException ex) {
+		}
+		
+		return ca;
 	}
 	
 }
