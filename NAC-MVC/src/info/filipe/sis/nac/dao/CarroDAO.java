@@ -1,6 +1,6 @@
 package info.filipe.sis.nac.dao;
 
-import info.filipe.sis.nac.bean.Carros;
+import info.filipe.sis.nac.bean.Carro;
 import info.filipe.sis.nac.connector.DBConnectorSQLite;
 
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class CarroDAO {
 		}
 	}
 	
-	public Boolean inserirCarro(Carros ca){
+	public Boolean inserirCarro(Carro ca){
 		
 		String sql = "INSERT INTO carros VALUES (NULL, ?, ?, ?, ?, ?, ?);";
 		
@@ -60,7 +60,7 @@ public class CarroDAO {
 		return false;
 	}
 	
-	public Boolean atualizarCarro(Carros ca){
+	public Boolean atualizarCarro(Carro ca){
 		
 		String sql = "UPDATE carros SET idmarca = ?, modelo= ?, placa = ?, ano = ?, km = ?, preco = ? WHERE id = ?;";
 		
@@ -84,18 +84,18 @@ public class CarroDAO {
 		return false;
 	}
 	
-	public ArrayList<Carros> getAll(){
+	public ArrayList<Carro> getAll(){
 		
 		String sql = "SELECT * FROM carros";
 		
-		ArrayList<Carros> listcarros = new ArrayList<Carros>();
+		ArrayList<Carro> listcarros = new ArrayList<Carro>();
 		
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet result = stmt.executeQuery();
 
 			while (result.next()) {				
-				Carros ca = new Carros();
+				Carro ca = new Carro();
 				ca.setId(result.getInt(1));
 				ca.setIdmarca(result.getInt(2));
 				ca.setModelo(result.getString(3));
@@ -114,9 +114,9 @@ public class CarroDAO {
 		
 	}
 	
-	public Carros getPK(int id){
+	public Carro getPK(int id){
 		String sql = "SELECT * FROM carros where id = ?";
-		Carros ca = new Carros();
+		Carro ca = new Carro();
 		
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
