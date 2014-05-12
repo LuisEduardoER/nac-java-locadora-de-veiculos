@@ -14,7 +14,10 @@ public class DBConnectorSQLite {
 		catch (ClassNotFoundException ex){ }
 
 		try{
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:C:/Eclipse 4.3/workspace/NAC-MVC/baseJAVA.db");
+			//String dblocation = DBConnectorSQLite.class.getResource("baseJAVA.db").toString();
+			//Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dblocation);
+			
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:c:/Eclipse 4.3/workspace/NAC-MVC/WebContent/WEB-INF/baseJAVA.db");
 		
 			return conn;
 		
