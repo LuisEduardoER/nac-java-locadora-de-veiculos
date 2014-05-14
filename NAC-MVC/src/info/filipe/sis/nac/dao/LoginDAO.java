@@ -38,9 +38,7 @@ public class LoginDAO {
 		} catch (SQLException ex) {
 
 		}
-
 		
 		return false;
 	}
-
 }
