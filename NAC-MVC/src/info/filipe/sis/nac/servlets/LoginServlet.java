@@ -19,6 +19,8 @@ public class LoginServlet extends HttpServlet {
 	
 	LoginDAO dao = new LoginDAO();
 	
+	String pagina = "";
+	
 	public LoginServlet() {
 		super();
 	}
@@ -39,9 +41,12 @@ public class LoginServlet extends HttpServlet {
 			if(dao.verifyLogin(l)){
 				HttpSession session = request.getSession(true);
 				session.setAttribute("logininfo", l);
+				pagina = "index.html";
 				dispatcher(request, response);
 			} else {
-				System.out.println("Falhou.");
+				pagina = "login.jsp";
+				request.setAttribute("erro", true);
+				dispatcher(request, response);
 			}
 			
 		}
@@ -49,9 +54,11 @@ public class LoginServlet extends HttpServlet {
 	
 	private void dispatcher(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String pagina = "index.html";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
-		dispatcher.forward(request, response);
+		
+		if(!pagina.equals("")){
+			RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+		}
 	}
 
 }
