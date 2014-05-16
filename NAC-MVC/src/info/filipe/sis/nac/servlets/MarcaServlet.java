@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/marcas")
-public class Marcas extends HttpServlet {
+public class MarcaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MarcasDAO dao = new MarcasDAO();
 	Logon logon = new Logon();
 	
-	public Marcas() {
+	public MarcaServlet() {
 		super();
 	}
 
