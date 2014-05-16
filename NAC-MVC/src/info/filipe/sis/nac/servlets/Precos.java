@@ -1,8 +1,8 @@
 package info.filipe.sis.nac.servlets;
 
-import info.filipe.sis.nac.bean.Cliente;
 import info.filipe.sis.nac.bean.Preco;
 import info.filipe.sis.nac.dao.PrecoDAO;
+import info.filipe.sis.nac.login.Logon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Precos extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	PrecoDAO dao = new PrecoDAO();
+	Logon logon = new Logon();
 	
 	public Precos(){
 		super();
@@ -26,25 +27,34 @@ public class Precos extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getParameter("delete") != null && request.getParameter("delete").equals("1")) {
-			deletar(request, response);
-		} else if(request.getParameter("edit") != null && request.getParameter("edit").equals("1")){
-			selecteditar(request, response);
+		
+		if(logon.isLogado(request, response)){
+			if (request.getParameter("delete") != null && request.getParameter("delete").equals("1")) {
+				deletar(request, response);
+			} else if(request.getParameter("edit") != null && request.getParameter("edit").equals("1")){
+				selecteditar(request, response);
+			} else {
+				listar(request, response);
+			} 			
 		} else {
-			listar(request, response);
+			response.sendRedirect("login.jsp");
 		}
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		if (request.getParameter("cadastro") != null && request.getParameter("cadastro").equals("true")) {
-			//inclusao
-			cadastro(request, response);
-		} else if (request.getParameter("cadastro") != null && request.getParameter("cadastro").equals("false")){
-			//update
-			atualizar(request, response);
+		if(logon.isLogado(request, response)){
+			if (request.getParameter("cadastro") != null && request.getParameter("cadastro").equals("true")) {
+				//inclusao
+				cadastro(request, response);
+			} else if (request.getParameter("cadastro") != null && request.getParameter("cadastro").equals("false")){
+				//update
+				atualizar(request, response);
+			}			
+		} else {
+			response.sendRedirect("login.jsp");
 		}
 	}
 	

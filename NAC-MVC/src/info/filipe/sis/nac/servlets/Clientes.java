@@ -1,8 +1,8 @@
 package info.filipe.sis.nac.servlets;
 
 import info.filipe.sis.nac.bean.Cliente;
-import info.filipe.sis.nac.bean.Login;
 import info.filipe.sis.nac.dao.ClienteDAO;
+import info.filipe.sis.nac.login.Logon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,12 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/clientes")
 public class Clientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ClienteDAO dao = new ClienteDAO();
+	Logon logon = new Logon();
 
 	public Clientes() {
 		super();
@@ -26,7 +26,7 @@ public class Clientes extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if(isLogado(request, response)){
+		if(logon.isLogado(request, response)){
 			if (request.getParameter("delete") != null
 					&& request.getParameter("delete").equals("1")) {
 				deletar(request, response);
@@ -44,7 +44,7 @@ public class Clientes extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if(isLogado(request, response)){
+		if(logon.isLogado(request, response)){
 			if (request.getParameter("cadastro") != null
 					&& request.getParameter("cadastro").equals("true")) {
 				// inclusao
@@ -143,19 +143,6 @@ public class Clientes extends HttpServlet {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);
-	}
-
-	private Boolean isLogado(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
-		if(session.getAttribute("logininfo") != null){
-			Login l = (Login) session.getAttribute("logininfo");
-			if (!l.getUsuario().equals("") && !l.getSenha().equals("")) {
-				return true;
-			}			
-		}
-
-		return false;
 	}
 
 }

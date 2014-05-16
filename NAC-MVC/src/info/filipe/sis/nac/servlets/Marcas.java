@@ -2,6 +2,7 @@ package info.filipe.sis.nac.servlets;
 
 import info.filipe.sis.nac.bean.Marca;
 import info.filipe.sis.nac.dao.MarcasDAO;
+import info.filipe.sis.nac.login.Logon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,19 +18,25 @@ import javax.servlet.http.HttpServletResponse;
 public class Marcas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MarcasDAO dao = new MarcasDAO();
-
+	Logon logon = new Logon();
+	
 	public Marcas() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("delete") != null && request.getParameter("delete").equals("1")) {
-			deletar(request, response);
-		} else if(request.getParameter("edit") != null && request.getParameter("edit").equals("1")){
-			selecteditar(request, response);
+		
+		if(logon.isLogado(request, response)){
+			if (request.getParameter("delete") != null && request.getParameter("delete").equals("1")) {
+				deletar(request, response);
+			} else if(request.getParameter("edit") != null && request.getParameter("edit").equals("1")){
+				selecteditar(request, response);
+			} else {
+				listar(request, response);
+			}			
 		} else {
-			listar(request, response);
+			response.sendRedirect("login.jsp");
 		}
 	}
 
