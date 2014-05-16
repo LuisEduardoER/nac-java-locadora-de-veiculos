@@ -18,15 +18,15 @@
 	<form action="precos" method="post">
 		<c:choose>
 			<c:when test="${edicao != null && edicao.equals('true')}">
-				<p>Digite p novo preço e confirme para atualizar</p>
+				<p>Digite o novo preço e confirme para atualizar</p>
 				<input type="hidden" value="false" name="cadastro">
 				<input type="hidden" value="${precoedit.id}" name="id">
 				<table>
 					<tr>
 						<td><input type="text" name="descricao"
-							value="${maprecoedit.descricao}" /></td>
+							value="${precoedit.descricao}" /></td>
 							<td><input type="text" name="valor"
-							value="${maprecoedit.valor}" /></td>
+							value="${precoedit.valor}" /></td>
 						<td><input type="submit" value="Salvar" name="btnSalvar"></td>
 					</tr>
 				</table>
@@ -51,7 +51,8 @@
 
 	<table>
 		<tr style="font-weight: bold; text-align: center;">
-			<td width="100px">Preço</td>
+			<td width="200px">Descrição</td>
+			<td width="200px">Tarifa</td>
 			<td>Ops</td>
 		</tr>
 
@@ -59,9 +60,9 @@
 			<c:when test="${listagemPrecos != null && listagemPrecos.size() > 0}">
 				<c:forEach items="${listagemPrecos}" var="d">
 					<tr>
-						<td><a href="preco?edit=1&id=${d.id}">${d.descricao}</a></td>
-						<td>${d.valor}</td>
-						<td><a href="preco?delete=1&id=${d.id}">X</a></td>
+						<td><a href="precos?edit=1&id=${d.id}">${d.descricao}</a></td>
+						<td>${d.valordecimal}</td>
+						<td><a href="precos?delete=1&id=${d.id}">X</a></td>
 					</tr>
 				</c:forEach>
 			</c:when>

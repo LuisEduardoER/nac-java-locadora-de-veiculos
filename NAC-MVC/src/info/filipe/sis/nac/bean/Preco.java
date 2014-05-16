@@ -1,7 +1,9 @@
 package info.filipe.sis.nac.bean;
 
+import java.text.DecimalFormat;
+
 public class Preco {
-	private String descricao;
+	private String descricao, valordecimal;
 	private double valor;
 	private int id;
 	
@@ -13,6 +15,14 @@ public class Preco {
 	}
 	public double getValor() {
 		return valor;
+		//return new DecimalFormat("###,###.##").format(valor);
+	}
+	public String getValordecimal() {
+		valordecimal = new DecimalFormat("###,###.00").format(valor);
+		return "R$ "+valordecimal;
+	}
+	public void setValordecimal(String valordecimal) {
+		this.valordecimal = valordecimal;
 	}
 	public void setValor(double valor) {
 		this.valor = valor;
@@ -23,6 +33,5 @@ public class Preco {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
 }
