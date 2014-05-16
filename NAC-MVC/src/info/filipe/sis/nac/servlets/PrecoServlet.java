@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/precos")
-public class Precos extends HttpServlet{
+public class PrecoServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	PrecoDAO dao = new PrecoDAO();
 	Logon logon = new Logon();
 	
-	public Precos(){
+	public PrecoServlet(){
 		super();
 	}
 	
