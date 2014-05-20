@@ -14,6 +14,10 @@ public class LocacaoDAO {
 	
 	static Connection conn = null;
 	
+	CarroDAO cdao = new CarroDAO();
+	ClienteDAO cldao = new ClienteDAO();
+	PrecoDAO pdao = new PrecoDAO();
+	
 	public LocacaoDAO() {
 		try {
 			conn = DBConnectorSQLite.getConnection();
@@ -29,9 +33,9 @@ public class LocacaoDAO {
 			stmt.setInt(1, l.getIdCarro());
 			stmt.setInt(2, l.getIdPreco());
 			stmt.setInt(3, l.getIdCliente());
-			stmt.setDate(4, l.getData_loc());
+			stmt.setString(4, l.getData_loc());
 			stmt.setInt(5, l.getQtdDias());
-			stmt.setDate(6, l.getData_entrega());
+			stmt.setString(6, l.getData_entrega());
 			stmt.setString(7, l.getDsPagamento());
 			stmt.setString(8, l.getDsSituacao());
 			stmt.setString(9, l.getObs());
@@ -41,7 +45,7 @@ public class LocacaoDAO {
 				return true;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		return false;
@@ -53,7 +57,7 @@ public class LocacaoDAO {
 		
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setDate(6, l.getData_entrega());
+			stmt.setString(6, l.getData_entrega());
 			stmt.setString(7, l.getDsPagamento());
 			stmt.setString(8, l.getDsSituacao());
 			stmt.setString(9, l.getObs());
@@ -84,11 +88,14 @@ public class LocacaoDAO {
 				Locacao l = new Locacao();
 				l.setId(result.getInt(1));
 				l.setIdCarro(result.getInt(2));
-				l.setIdPreco(result.getInt(3));				
+				l.setCarro(cdao.getPK(result.getInt(2)));
+				l.setIdPreco(result.getInt(3));
+				l.setPreco(pdao.getPK(result.getInt(3)));
 				l.setIdCliente(result.getInt(4));
-				l.setData_loc(result.getDate(5));
+				l.setCliente(cldao.getPK(result.getInt(4)));
+				l.setData_loc(result.getString(5));
 				l.setQtdDias(result.getInt(6));
-				l.setData_entrega(result.getDate(7));
+				l.setData_entrega(result.getString(7));
 				l.setDsSituacao(result.getString(8));
 				l.setDsPagamento(result.getString(9));
 				l.setObs(result.getString(10));
@@ -116,9 +123,9 @@ public class LocacaoDAO {
 				l.setIdCarro(result.getInt(2));
 				l.setIdPreco(result.getInt(3));				
 				l.setIdCliente(result.getInt(4));
-				l.setData_loc(result.getDate(5));
+				l.setData_loc(result.getString(5));
 				l.setQtdDias(result.getInt(6));
-				l.setData_entrega(result.getDate(7));
+				l.setData_entrega(result.getString(7));
 				l.setDsSituacao(result.getString(8));
 				l.setDsPagamento(result.getString(9));
 				l.setObs(result.getString(10));
