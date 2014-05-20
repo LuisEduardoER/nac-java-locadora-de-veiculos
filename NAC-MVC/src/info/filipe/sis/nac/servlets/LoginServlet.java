@@ -27,11 +27,18 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//not available
+		if(request.getParameter("logout") != null)
+		{
+			HttpSession session = request.getSession();
+			session.setAttribute("logininfo", null);
+			response.sendRedirect("index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+
 		
 		if(!request.getParameter("login").equals("") && !request.getParameter("passwd").equals("")){
 			Login l = new Login();
@@ -41,10 +48,10 @@ public class LoginServlet extends HttpServlet {
 			if(dao.verifyLogin(l)){
 				HttpSession session = request.getSession(true);
 				session.setAttribute("logininfo", l);
-				pagina = "index.html";
+				pagina = "index.jsp";
 				dispatcher(request, response);
 			} else {
-				pagina = "login.jsp";
+				pagina = "index.jsp";
 				request.setAttribute("erro", true);
 				dispatcher(request, response);
 			}
