@@ -109,7 +109,7 @@
 					<c:forEach items="${listagemCarros}" var="d">
 						<tr>
 							<td><a href="carros?edit=1&id=${d.id}">${d.id}</a></td>
-							<td>${d.idmarca}</td>
+							<td>${d.marca}</td>
 							<td>${d.modelo}</td>
 							<td>${d.placa}</td>
 							<td>${d.ano}</td>
