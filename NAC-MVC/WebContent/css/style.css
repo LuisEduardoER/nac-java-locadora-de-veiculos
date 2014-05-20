@@ -77,7 +77,7 @@ img {
 #adbox {
 	background: url(../images/bg-content.gif) repeat;
 	padding: 0px 0 50px;
-	height: 300px;
+	min-height: 300px;
 }
 #adbox p {
 	margin: 0;
@@ -178,7 +178,8 @@ img {
 	position: absolute;
 	bottom: -100px;
 }
-
+ 
+ 
 /*------------------------------ CONTENTS ------------------------------*/
 #contents {
 	background: url(../images/bg-content.gif) repeat;
@@ -386,4 +387,3 @@ img {
 #contents #solutions ul li p b {
 	margin: 0 0 20px;
 }
-
