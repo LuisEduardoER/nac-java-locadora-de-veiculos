@@ -62,9 +62,9 @@ table
 /** Logo **/
 #logo {
 	display: block;
-	padding: 0 0 35px 20px;
+	padding: 0 0 35px 7px;
 	height: 150px;
-	width: 940px;
+	width: 100%;
 	margin: 0 0 -9px;
 }
 
@@ -78,7 +78,7 @@ table
 #navigation {
 	height: 47px;
 	padding: 0px 0 0 4px;
-	margin: 9px 0 0 0;
+	margin: -7px 0 0 0;
 	position: absolute;
 	border-radius: 3px
 }
@@ -428,9 +428,8 @@ table
 }
 
 
-#box-login
-{
-	width:490px;
-	height: 250px;
-	padding: 10px;
+#box-login{
+    height: 250px;
+    width: 500px;
+    padding: 1px 0 0 23%;
 }
