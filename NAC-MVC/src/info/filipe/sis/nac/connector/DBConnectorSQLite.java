@@ -17,7 +17,7 @@ public class DBConnectorSQLite {
 			//String dblocation = DBConnectorSQLite.class.getResource("baseJAVA.db").toString();
 			//Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dblocation);
 			
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:C:/Documents and Settings/filipe/workspace/NAC-MVC/WebContent/WEB-INF/baseJAVA.db");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:C:/Users/rm67044/Desktop/work/NAC-MVC/WebContent/WEB-INF/baseJAVA.db");
 		
 			return conn;
 		

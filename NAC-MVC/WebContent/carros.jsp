@@ -34,56 +34,71 @@
 			</c:when>
 		</c:choose>
 		<span class="titulo">Cadastro de Carros</span>
-		<form action="clientes" method="post">
+		<form action="carros" method="post">
 			<c:choose>
 				<c:when test="${edicao != null && edicao.equals('true')}">
 					<p>Digite os dados corretos e confirme para atualizar</p>
 					<input type="hidden" value="false" name="cadastro">
-					<input type="hidden" value="${clienteedit.id}" name="id">
-					
-					<span >Nome:</span>
-						<input type="text" name="nome"	placeholder="Nome" value="${clienteedit.nome}" />
-					<br/>
-					<span>Sobrenome:</span>
-						<input type="text" name="sobrenome"	placeholder="Sobrenome" value="${clienteedit.sobrenome}" />
-					<br/>
-					<span>CPF:</span>
-						<input type="text" name="cpf"
-								placeholder="CPF" value="${clienteedit.cpf}" />
-					<br/>
-					<span>Logradouro:</span>
-						<input type="text" name="logradouro" placeholder="Logradouro" value="${clienteedit.logradouro}" /> / <input type="text" name="num"	placeholder="Número" value="${clienteedit.logradouro_num}" />
-					<br/>
-					<span>Bairro:</span>
-						<input type="text" name="bairro" placeholder="Bairro" value="${clienteedit.bairro}" />
-					<br/>
-					<span>CEP:</span>
-						<input type="text" name="cep" placeholder="CEP" value="${clienteedit.cep}" />
-					<br/>
-					<span>Data de Nascimento:</span>
-						<input type="text" name="nascimento" placeholder="Nascimento" value="${clienteedit.nascimento}" />
-					<br/>		
+					<input type="hidden" value="${carroedit.id}" name="id">
+						<select name="marcas">
+							<option value="${carroedit.idmarca}" selected>Manter marca atual</option>
+							<c:forEach items="${listademarcas}" var="g">
+								<option value="${g.id}">${g.descricao}</option>
+							</c:forEach>
+							</select> 
+									</td>
+									
+								<td>	
+								<input type="text" name="modelo" value="${carroedit.modelo}"/> </td>
+								<td><input type="text" name="placa"
+								value="${carroedit.placa}" /></td>
+								<td><input type="text" name="ano"
+								value="${carroedit.ano}" /></td>
+								<td><input type="text" name="km"
+								value="${carroedit.km}" /></td>
+								<td>
+							
+							<select name="preco">
+							<option value="${carroedit.idpreco}" selected>Manter tabela de preco atual</option>
+							<c:forEach items="${listadeprecos}" var="h">
+								<option value="${h.id}">${h.descricao}</option>
+							</c:forEach>
+							</select> 
+									</td>
+						
 					<input type="submit" value="Salvar" name="btnSalvar">
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" value="true" name="cadastro">
 					<table>
 						<tr>
-							<td><input type="text" name="nome"
-								placeholder="Nome" /></td>
-								<td><input type="text" name="sobrenome"
-								placeholder="Sobrenome" /></td>
-								<td><input type="text" name="cpf"
-								placeholder="CPF" /></td>
-								<td><input type="text" name="logradouro"
-								placeholder="Logradouro" /><input type="text" name="num"
-								placeholder="Número" /></td>
-								<td><input type="text" name="bairro"
-								placeholder="Bairro" /></td>
-								<td><input type="text" name="cep"
-								placeholder="CEP" /></td>
-								<td><input type="text" name="nascimento"
-								placeholder="nascimento" /></td>
+							<td>
+							
+							<select name="marcas">
+							<c:forEach items="${listademarcas}" var="g">
+								<option value="${g.id}">${g.descricao}</option>
+							</c:forEach>
+							</select> 
+									</td>
+									
+								<td>	
+								<input type="text" name="modelo"
+								placeholder="Modelo" /> </td>
+								<td><input type="text" name="placa"
+								placeholder="Placa" /></td>
+								<td><input type="text" name="ano"
+								placeholder="Ano" /></td>
+								<td><input type="text" name="km"
+								placeholder="KM" /></td>
+								<td>
+							
+							<select name="preco">
+							<c:forEach items="${listadeprecos}" var="h">
+								<option value="${h.id}">${h.descricao}</option>
+							</c:forEach>
+							</select> 
+									</td>
+								
 							<td><input type="submit" value="Salvar" name="btnSalvar"></td>
 						</tr>
 					</table>
@@ -95,7 +110,7 @@
 		<table>
 			<tr style="font-weight: bold; text-align: center;">
 				<td width="10px">ID</td>
-				<td width="150px">ID Marca</td>
+				<td width="150px">Marca</td>
 				<td width="150px">Modelo</td>
 				<td width="100px">Placa</td>
 				<td width="200px">Ano</td>
@@ -114,7 +129,7 @@
 							<td>${d.placa}</td>
 							<td>${d.ano}</td>
 							<td>${d.km}</td>
-							<td>${d.idpreco}</td>
+							<td>${d.preco}</td>
 							<td><a href="carros?delete=1&id=${d.id}">X</a></td>
 						</tr>
 					</c:forEach>
