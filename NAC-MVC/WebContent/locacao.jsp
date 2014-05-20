@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />		
 </head>
 <body>
+<%if(session.getAttribute("logininfo") == null){ response.sendRedirect("index.jsp");}%>
 <c:import url="header.jsp"/>
 		<div id="adbox">
 		<div class="body">
@@ -30,12 +31,12 @@
 						<span>Carro:&nbsp;</span>
 						<select name="carros">
 							<option value="${locacaoedit.idCarro}" selected>Manter carro atual</option>
-								<c:forEach items="${listadecarros}" var="g">
-									<option value="${g.id}">${g.descricao}</option>
+								<c:forEach items="${listadeCarros}" var="g">
+									<option value="${g.id}">${g.modelo}</option>
 								</c:forEach>
 						</select>
 					</label> 
-					<label>
+					<!--  <label>
 						<span>Preço:&nbsp;</span>
 							<select name="precos">
 							<option value="${locacaoedit.idPreco}" selected>Manter preco atual</option>
@@ -44,12 +45,13 @@
 								</c:forEach>
 							</select>
 					</label>
+					-->
 					<label>
 						<span>Cliente:&nbsp;</span>
 							<select name="idcliente">
 							<option value="${locacaoedit.idCliente}" selected>Manter cliente atual</option>
-								<c:forEach items="${listadeclientes}" var="i">
-									<option value="${i.id}">${i.descricao}</option>
+								<c:forEach items="${listadeClientes}" var="i">
+									<option value="${i.id}">${i.nome}</option>
 								</c:forEach>
 							</select>
 					</label>
