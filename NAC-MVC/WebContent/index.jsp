@@ -23,16 +23,15 @@
 				<c:choose>
 					<c:when test="${sessionScope.logininfo == null}">
 					<h1>Login</h1>
-								<label>
-									<span style="color: #999">Login:&nbsp;</span>
-									<input type="text" name="login">
-								</label>
-								<label>
-									<span style="color: #999">Senha:&nbsp;</span>
-									<input type="password" name="passwd">
-								</label>
-								<input style="margin-left: 150px" type="submit" value="Logar">
-							
+						<label>
+							<span style="color: #999">Login:&nbsp;</span>
+							<input type="text" name="login">
+						</label>
+						<label>
+							<span style="color: #999">Senha:&nbsp;</span>
+							<input type="password" name="passwd">
+						</label>
+						<input style="margin-left: 150px" type="submit" value="Logar">							
 					</c:when>
 					<c:otherwise>
 						<h1>Sistema de Locação de Veículos LDTA</h1>
