@@ -64,8 +64,8 @@ table
 	display: block;
 	padding: 0 0 35px 20px;
 	height: 150px;
-	width: 98%;
-	background: #fff;
+	width: 940px;
+	margin: 0 0 -9px;
 }
 
 #logo a img{
@@ -78,7 +78,7 @@ table
 #navigation {
 	height: 47px;
 	padding: 0px 0 0 4px;
-	margin: -7px 0 0 0;
+	margin: 9px 0 0 0;
 	position: absolute;
 	border-radius: 3px
 }
@@ -120,7 +120,6 @@ table
 /** Adbox **/
 #adbox {
 	background: url(../images/bg-content.gif) repeat;
-	padding: 0px 0 50px;
 }
 #adbox p {
 	margin: 0;
