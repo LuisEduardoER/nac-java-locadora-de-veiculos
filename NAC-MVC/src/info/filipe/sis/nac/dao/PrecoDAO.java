@@ -116,5 +116,28 @@ public class PrecoDAO {
 		
 		return p;
 	}
+	
+	public int getIdPreco(int idcarro)
+	{
+		String sql = "SELECT preco FROM carros WHERE id = ?";
+		int idpreco = 0;
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, idcarro);
+
+			ResultSet result = stmt.executeQuery();
+
+			if (result.next()) {
+				idpreco = result.getInt(1);				
+			}
+			
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return idpreco;
+	}
 
 }

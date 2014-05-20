@@ -10,6 +10,40 @@ img {
 	border: 0;
 }
 
+label
+{
+	margin-right:20px;
+	display:block;
+	padding:10px 0 10px 0;
+}
+
+label span
+{
+	display:block;
+	font-size: 14px;
+	font-weight: bold;
+	float: left;
+	width: 150px;
+	text-align: right;
+	padding: 5px 20p 0 0;
+}
+
+h1
+{
+	font-size: 1.5em;
+	color: #999;
+	font-variant: small-caps;
+	text-transform: none;
+	font-weight: 200;
+	padding-top: 30px;
+	margin-left: 40px;
+}
+
+table
+{
+	padding: 10px;
+}
+
 /*------------------------------ HEADER ------------------------------*/
 #header {
 	width: 960px;
@@ -22,6 +56,9 @@ img {
 #logo {
 	display: block;
 	padding: 0 0 35px 20px;
+	height: 150px;
+	width: 98%;
+	background: #fff;
 }
 
 #logo a img{
@@ -77,7 +114,6 @@ img {
 #adbox {
 	background: url(../images/bg-content.gif) repeat;
 	padding: 0px 0 50px;
-	height: 300px;
 }
 #adbox p {
 	margin: 0;
@@ -86,7 +122,6 @@ img {
 	width: 960px;
 	margin: 0 auto 0;
 	background-color: white;
-	height: 350px
 }
 #adbox div.images {
 	float: right;

@@ -9,21 +9,7 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />		
 </head>
 <body>
-	<div id="header">
-		<div id="logo">
-			<a href="index.html" ><img src="images/patetaMotorista.jpg" alt="Logo" /></a>
-		</div>
-		<div id="navigation">
-			<ul>
-				<li class="first selected"><a href="index.html">Home</a></li>
-				<li><a href="clientes">Cadastro Cliente</a></li>
-				<li><a href="marcas">Cadastro de Marcas</a></li>
-				<li><a href="carros">Cadastro de Automóveis</a></li>
-				<li><a href="precos" >Cadastro de Preços</a></li>
-				<li><a href="locacao">Locação</a></li>
-			</ul>
-		</div>
-	</div>
+	<c:import url="header.jsp"/>
 	<div id="adbox">
 		<div class="body">
 			<div class="details">
@@ -32,7 +18,7 @@
 				${status}
 			</c:when>
 		</c:choose>
-		<span class="titulo">Cadastro de Carros</span>
+		<h1>Cadastro de Clientes</h1>
 			<form action="clientes" method="post" class="formcadastro">
 				<c:choose>
 					<c:when test="${edicao != null && edicao.equals('true')}">
@@ -40,79 +26,77 @@
 						<input type="hidden" value="false" name="cadastro">
 						<input type="hidden" value="${clienteedit.id}" name="id">
 						
-						<span >Nome:</span>
-							<input type="text" name="nome"	placeholder="Nome" value="${clienteedit.nome}" />
-						<br/>
-						<span>Sobrenome:</span>
-							<input type="text" name="sobrenome"	placeholder="Sobrenome" value="${clienteedit.sobrenome}" />
-						<br/>
-						<span>CPF:</span>
+						<label>
+							<span>Nome:&nbsp;</span>
+							<input type="text" name="nome"	value="${clienteedit.nome}" />
+						</label>
+						<label>
+						<span>Sobrenome:&nbsp;</span>
+							<input type="text" name="sobrenome"	value="${clienteedit.sobrenome}" />
+						</label>
+						<label>
+						<span>CPF:&nbsp;</span>
 							<input type="text" name="cpf"
-									placeholder="CPF" value="${clienteedit.cpf}" />
-						<br/>
-						<span>Logradouro:</span>
-							<input type="text" name="logradouro" placeholder="Logradouro" value="${clienteedit.logradouro}" /> / <input type="text" name="num"	placeholder="Número" value="${clienteedit.logradouro_num}" />
-						<br/>
-						<span>Bairro:</span>
-							<input type="text" name="bairro" placeholder="Bairro" value="${clienteedit.bairro}" />
-						<br/>
-						<span>CEP:</span>
-							<input type="text" name="cep" placeholder="CEP" value="${clienteedit.cep}" />
-						<br/>
-						<span>Data de Nascimento:</span>
-							<input type="text" name="nascimento" placeholder="Nascimento" value="${clienteedit.nascimento}" />
-						<br/>		
-						<input type="submit" value="Salvar" name="btnSalvar">
+									value="${clienteedit.cpf}" />
+					    </label>
+					    <label>
+						<span>Logradouro:&nbsp;</span>
+							<input type="text" name="logradouro" value="${clienteedit.logradouro}" /> / <input type="text" name="num"	placeholder="Número" value="${clienteedit.logradouro_num}" />
+						</label>
+						<label>
+							<span>Bairro:&nbsp;</span>
+							<input type="text" name="bairro"  value="${clienteedit.bairro}" />
+						</label>
+						<label>						
+							<span>CEP:&nbsp;</span>
+							<input type="text" name="cep" value="${clienteedit.cep}" />
+						</label>
+						<label>
+							<span>Data de Nascimento:&nbsp;</span>
+							<input type="text" name="nascimento" value="${clienteedit.nascimento}" />
+						</label>	
+						<label>
+							<input type="submit" value="Salvar" name="btnSalvar">
+						</label>
 					</c:when>
 					<c:otherwise>
-						<input type="hidden" value="true" name="cadastro">
-								<span class="dados">Nome:</span>
-								<span>
-									<input type="text" name="nome"placeholder="Nome" />
-								</span>
-								<br>
-								<span>Sobrenome:</span>
-								<span>
-									<input type="text" name="sobrenome"placeholder="Sobrenome" />
-								</span>
-								<br>
-								<span>CPF:</span>
-								<span>
-									<input type="text" name="cpf" placeholder="CPF" />
-								</span>
-								<br>
-								<span>Logradouro:</span>
-								<span>
-									<input type="text" name="logradouro" placeholder="Logradouro" />/
-									<input type="text" name="num" placeholder="Número" />
-								</span>
-								<br>
-								<span>Bairro:</span>
-								<span>
-									<input type="text" name="bairro"	placeholder="Bairro" />
-								</span>
-								<br>
-								<span>CEP:</span>
-								<span>
-									<input type="text" name="cep"	placeholder="CEP" />
-								</span>
-								<br>
-								<span>Data de Nascimento:</span>
-								<span>
-									<input type="text" name="nascimento" placeholder="nascimento" />
-								</span>
-								<br>
-								<span>
-									<input type="submit" value="Salvar" name="btnSalvar">
-								</span>
-							
+						<label>
+							<input type="hidden" value="true" name="cadastro">
+							<span class="dados">Nome:&nbsp;</span>
+							<input type="text" name="nome"/>
+						</label>
+						<label>
+							<span>Sobrenome:&nbsp;</span>
+							<input type="text" name="sobrenome"/>
+						</label>
+						<label>
+							<span>CPF:&nbsp;</span>
+							<input type="text" name="cpf"/>
+						</label>
+						<label>
+							<span>Logradouro:&nbsp;</span>
+							<input type="text" name="logradouro"/>/
+							<input type="text" name="num"/>
+						</label>
+						<label>
+							<span>Bairro:&nbsp;</span>
+							<input type="text" name="bairro"/>
+						</label>
+						<label>
+							<span>CEP:&nbsp;</span>
+							<input type="text" name="cep"/>
+						</label>
+						<label>
+							<span>Data de Nascimento:&nbsp;</span>
+							<input type="text" name="nascimento"/>
+						</label>
+						<label>
+							<input type="submit" value="Salvar" name="btnSalvar">
+						</label>
 					</c:otherwise>
 				</c:choose>
-			<hr>
-					<br />
 					<hr>
-					<h1>Registros</h1>
-					
+					<h1>Registros</h1>					
 					<table>
 						<tr style="font-weight: bold; text-align: center;">
 							<td width="10px">ID</td>
@@ -154,6 +138,7 @@
 				</form>
 			</div>	
 		</div>
+		<c:import url="footer.jsp"/>
 	</div>
 </body>
 </html>

@@ -6,13 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro Marcas</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 </head>
 <body>
-	<c:choose>
-		<c:when test="${status != null}">
-			${status}
-		</c:when>
-	</c:choose>
+	<c:import url="header.jsp"/>
+<div id="adbox">
+		<div class="body">
+			<div class="details">
+				<c:choose>
+			<c:when test="${status != null}">
+				${status}
+			</c:when>
+		</c:choose>
 	<h1>Cadastro de Marcas</h1>
 	<form action="marcas" method="post">
 		<c:choose>
@@ -67,6 +72,9 @@
 		</c:choose>
 
 	</table>
-
+</div>
+</div>
+<c:import url="footer.jsp"/>
+</div>
 </body>
 </html>
