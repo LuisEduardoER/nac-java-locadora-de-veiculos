@@ -1,12 +1,12 @@
 package info.filipe.sis.nac.bean;
 
-import java.sql.Date;
-
 
 public class Locacao {
 	private int id, idCarro, idPreco, idCliente, qtdDias;
-	private String dsSituacao, dsPagamento, obs;
-	private Date data_loc, data_entrega;
+	private String dsSituacao, dsPagamento, obs,data_loc, data_entrega;
+	private Carro carro;
+	private Preco preco;
+	private Cliente cliente;
 	
 	public int getId() {
 		return id;
@@ -72,20 +72,47 @@ public class Locacao {
 		this.obs = obs;
 	}
 
-	public Date getData_loc() {
+	public String getData_loc() {
 		return data_loc;
 	}
 
-	public void setData_loc(Date data_loc) {
+	public void setData_loc(String data_loc) {
 		this.data_loc = data_loc;
 	}
 
-	public Date getData_entrega() {
+	public String getData_entrega() {
 		return data_entrega;
 	}
 
-	public void setData_entrega(Date data_entrega) {
+	public void setData_entrega(String data_entrega) {
 		this.data_entrega = data_entrega;
 	}
+
+	public String getCarro() {
+		return carro.getModelo();
+	}
+
+	public void setCarro(Carro carro) {
+		this.carro = carro;
+	}
+
+	public String getPreco() {
+		return ""+preco.getValor();
+	}
+
+	public void setPreco(Preco preco) {
+		this.preco = preco;
+	}
+
+	public String getCliente() {
+		return cliente.getNome();
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
+	
 
 }
