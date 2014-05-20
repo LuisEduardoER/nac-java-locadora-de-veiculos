@@ -13,6 +13,8 @@ public class CarroDAO {
 
 	static Connection conn = null;
 	
+	MarcasDAO mdao = new MarcasDAO();
+	
 	public CarroDAO(){
 		try {
 			conn = DBConnectorSQLite.getConnection();
@@ -98,6 +100,7 @@ public class CarroDAO {
 				Carro ca = new Carro();
 				ca.setId(result.getInt(1));
 				ca.setIdmarca(result.getInt(2));
+				ca.setMarca(mdao.getPK(result.getInt(2)));
 				ca.setModelo(result.getString(3));
 				ca.setPlaca(result.getString(4));
 				ca.setAno(result.getInt(5));

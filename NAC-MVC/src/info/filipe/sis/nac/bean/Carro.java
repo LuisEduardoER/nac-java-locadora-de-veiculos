@@ -5,6 +5,7 @@ public class Carro {
 	private String placa, modelo;
 	private float km;
 	private int id, ano, idpreco, idmarca;
+	private Marca marca;
 	
 	public String getPlaca() {
 		return placa;
@@ -47,6 +48,12 @@ public class Carro {
 	}
 	public void setIdpreco(int idpreco) {
 		this.idpreco = idpreco;
+	}
+	public String getMarca() {
+		return marca.getDescricao();
+	}
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 	
 	
