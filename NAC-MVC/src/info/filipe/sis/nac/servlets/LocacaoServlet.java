@@ -70,6 +70,12 @@ public class LocacaoServlet extends HttpServlet{
 	private void selecteditar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Locacao l = dao.getPK(Integer.parseInt(request.getParameter("id")));
+		ArrayList<Carro> ca = cdao.getAll();
+		
+		ArrayList<Cliente> cl = cldao.getAll();
+
+		request.setAttribute("listadeCarros", ca);
+		request.setAttribute("listadeClientes", cl);
 
 		request.setAttribute("edicao", "true");
 		request.setAttribute("locacaoedit", l);
