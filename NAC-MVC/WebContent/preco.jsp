@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 </head>
 <body>
+	<%if(session.getAttribute("logininfo") == null){ response.sendRedirect("index.jsp");}%>
 	<c:import url="header.jsp"/>
 <div id="adbox">
 		<div class="body">
