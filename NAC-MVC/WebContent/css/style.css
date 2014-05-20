@@ -26,8 +26,8 @@ img {
 
 #logo a img{
 	height: 150px;
-	width: 750px;
-	margin: 0 auto;
+	width: 100%;
+	margin: 0 0 0 -7px;	
 }
 
 /** Navigation **/
@@ -77,7 +77,7 @@ img {
 #adbox {
 	background: url(../images/bg-content.gif) repeat;
 	padding: 0px 0 50px;
-	min-height: 300px;
+	height: 300px;
 }
 #adbox p {
 	margin: 0;
@@ -104,9 +104,7 @@ img {
 	top: -2px;
 }
 #adbox .details {
-	color: #ffffff;
-	height: 200px;
-	width: 200px;
+	color: #000;
 }
 #adbox .details p {
 	color: #646c6f;
