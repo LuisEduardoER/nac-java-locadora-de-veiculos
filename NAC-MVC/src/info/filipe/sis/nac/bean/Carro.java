@@ -6,7 +6,14 @@ public class Carro {
 	private float km;
 	private int id, ano, idpreco, idmarca;
 	private Marca marca;
+	private Preco preco;
 	
+	public String getPreco() {
+		return preco.getDescricao();
+	}
+	public void setPreco(Preco preco) {
+		this.preco = preco;
+	}
 	public String getPlaca() {
 		return placa;
 	}

@@ -14,6 +14,7 @@ public class CarroDAO {
 	static Connection conn = null;
 	
 	MarcasDAO mdao = new MarcasDAO();
+	PrecoDAO pdao = new PrecoDAO();
 	
 	public CarroDAO(){
 		try {
@@ -106,6 +107,7 @@ public class CarroDAO {
 				ca.setAno(result.getInt(5));
 				ca.setKm(result.getFloat(6));
 				ca.setIdpreco(result.getInt(7));
+				ca.setPreco(pdao.getPK(result.getInt(7)));
 				listcarros.add(ca);
 				
 			}

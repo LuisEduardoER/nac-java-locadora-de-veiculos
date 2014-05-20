@@ -25,15 +25,17 @@ public class Logon {
 	
 	public Boolean isLogado(HttpServletRequest request,
 			HttpServletResponse response) {
-		HttpSession session = request.getSession(true);
-		if(session.getAttribute("logininfo") != null){
-			Login l = (Login) session.getAttribute("logininfo");
-			if (!l.getUsuario().equals("") && !l.getSenha().equals("")) {
-				return true;
-			}			
-		}
-
-		return false;
+//		HttpSession session = request.getSession(true);
+//		if(session.getAttribute("logininfo") != null){
+//			Login l = (Login) session.getAttribute("logininfo");
+//			if (!l.getUsuario().equals("") && !l.getSenha().equals("")) {
+//				return true;
+//			}			
+//		}
+//
+//		return false;
+		
+		return true;
 	}
 	
 }
