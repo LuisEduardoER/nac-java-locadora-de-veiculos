@@ -93,7 +93,11 @@
 							<td>${d.dsSituacao}</td>
 							<td>${d.dsPagamento}</td>
 							<td>${d.obs}</td>
-							<td><a href="devolucao?id=${d.id}&carro=${d.idCarro}&cl=${d.idCliente}">Devolver</a></td>
+							<c:choose>
+								<c:when test="${d.dsSituacao != 'DEVOLVIDO'}">
+									<td><a href="devolucao?id=${d.id}&carro=${d.idCarro}&cl=${d.idCliente}">Devolver</a></td>
+								</c:when>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</c:when>
