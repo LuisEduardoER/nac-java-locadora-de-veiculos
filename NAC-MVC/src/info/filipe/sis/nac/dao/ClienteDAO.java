@@ -33,7 +33,7 @@ public class ClienteDAO {
 		String cep = c.getCep();
 		String nascimento = c.getNascimento();
 
-		String sql = "INSERT INTO clientes VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO clientes VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, nome);
@@ -44,6 +44,7 @@ public class ClienteDAO {
 			stmt.setString(6, bairro);
 			stmt.setString(7, cep);
 			stmt.setString(8, nascimento);
+			stmt.setInt(9, 0);
 
 			if (stmt.executeUpdate() == 1) {
 				return true;
@@ -119,6 +120,7 @@ public class ClienteDAO {
 				c.setBairro(result.getString(7));
 				c.setCep(result.getString(8));
 				c.setNascimento(result.getString(9));
+				c.setPontos(result.getInt(10));
 				cliente.add(c);
 			}
 			
@@ -148,12 +150,28 @@ public class ClienteDAO {
 				c.setBairro(result.getString(7));
 				c.setCep(result.getString(8));
 				c.setNascimento(result.getString(9));
+				c.setPontos(result.getInt(10));
 			}
 			
 		} catch (SQLException ex) {
 		}
 		
 		return c;
+	}
+	
+	public Boolean pontuar(int id){
+		String sql = "UPDATE clientes SET pontos = pontos+1000 WHERE id = ?;";
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			if (stmt.executeUpdate() == 1) {
+				return true;
+			} 
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 }

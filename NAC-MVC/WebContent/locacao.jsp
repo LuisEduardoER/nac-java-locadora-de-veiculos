@@ -93,7 +93,7 @@
 							<td>${d.dsSituacao}</td>
 							<td>${d.dsPagamento}</td>
 							<td>${d.obs}</td>
-							<td><a href="devolucao?id=${d.id}&carro=${d.idCarro}">Devolver</a></td>
+							<td><a href="devolucao?id=${d.id}&carro=${d.idCarro}&cl=${d.idCliente}">Devolver</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>
