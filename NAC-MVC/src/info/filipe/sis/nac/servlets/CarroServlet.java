@@ -72,10 +72,10 @@ public class CarroServlet extends HttpServlet {
 		
 		if (dao.inserirCarro(carro)) {
 			request.setAttribute("cadastro", "true");
-			request.setAttribute("status", "Preco inserido com sucesso!");
+			request.setAttribute("status", "Carro inserido com sucesso!");
 		}else{
 			request.setAttribute("cadastro", "false");
-			request.setAttribute("cadastro", "Falha ao inserir preco.");
+			request.setAttribute("status", "Falha ao inserir carro.");
 		}
 		
 		listar(request, response);
@@ -117,10 +117,10 @@ public class CarroServlet extends HttpServlet {
 		
 		if(dao.deletarCarro(Integer.parseInt(request.getParameter("id"))) == true){
 			request.setAttribute("delete", "true");
-			request.setAttribute("status", "Preco deletado com sucesso!");
+			request.setAttribute("status", "Carro deletado com sucesso!");
 		} else {
 			request.setAttribute("delete", "false");
-			request.setAttribute("status", "Ocorreu uma falha ao deletar o preco.");
+			request.setAttribute("status", "Ocorreu uma falha ao deletar o carro.");
 		}
 		
 		listar(request, response);

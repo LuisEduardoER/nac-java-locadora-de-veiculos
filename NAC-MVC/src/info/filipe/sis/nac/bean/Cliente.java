@@ -5,8 +5,14 @@ package info.filipe.sis.nac.bean;
 public class Cliente {
 	
 	private String nome, sobrenome, cpf, logradouro, logradouro_num, bairro, cep, nascimento;
-	private int id;
+	private int id, pontos;
 	
+	public int getPontos() {
+		return pontos;
+	}
+	public void setPontos(int pontos) {
+		this.pontos = pontos;
+	}
 	public String getNome() {
 		return nome;
 	}
