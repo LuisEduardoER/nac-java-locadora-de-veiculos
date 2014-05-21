@@ -18,25 +18,37 @@
 				${status}
 			</c:when>
 		</c:choose>
-		<div id="box-login">					
-			<form action="Login" method="post">		
-				<c:choose>
-					<c:when test="${sessionScope.logininfo == null}">
-					<h1>Login</h1>
+		<div id="box-login">
+					
+		<form action="Login" method="post">		
+		<c:choose>
+			<c:when test="${sessionScope.logininfo == null}">
+			<h1>Login</h1>
+						<%
+						Cookie[] cookies = request.getCookies();
+						if (cookies != null) {
+							String nomeusuario = cookies[0].getValue();
+						}
+						%>
+						
 						<label>
 							<span style="color: #999">Login:&nbsp;</span>
-							<input type="text" name="login">
+							<input type="text" name="login" value="${nomeusuario}">
 						</label>
 						<label>
 							<span style="color: #999">Senha:&nbsp;</span>
 							<input type="password" name="passwd">
 						</label>
-						<input style="margin-left: 150px" type="submit" value="Logar">							
-					</c:when>
-					<c:otherwise>
-						<h1>Sistema de Locação de Veículos LDTA</h1>
-					</c:otherwise>
-				</c:choose>
+						
+						
+						<input type="checkbox" name="lembrar" style="margin-left: 150px" value="true"> Lembrar de mim
+						<input style="margin-left: 150px" type="submit" value="Logar">
+					
+			</c:when>
+			<c:otherwise>
+				<h1>Sistema de Locação de Veículos LDTA</h1>
+			</c:otherwise>
+			</c:choose>
 			</form>
 				</div>
 			</div>

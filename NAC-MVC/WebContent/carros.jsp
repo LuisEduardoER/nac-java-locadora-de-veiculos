@@ -27,83 +27,68 @@
 					<p>Digite os dados corretos e confirme para atualizar</p>
 					<input type="hidden" value="false" name="cadastro">
 					<input type="hidden" value="${carroedit.id}" name="id">
-					<label>
-						<span>Marcas:&nbsp;</span>
 						<select name="marcas">
 							<option value="${carroedit.idmarca}" selected>Manter marca atual</option>
 							<c:forEach items="${listademarcas}" var="g">
 								<option value="${g.id}">${g.descricao}</option>
 							</c:forEach>
-						</select>
-					</label>
-					<label>
-						<span>Modelo:&nbsp;</span>
-						<input type="text" name="modelo" value="${carroedit.modelo}"/>
-					</label>
-					<label>
-						<span>Placa:&nbsp;</span>
-						<input type="text" name="placa"	value="${carroedit.placa}" />
-					</label>
-					<label>
-						<span>Ano:&nbsp;</span>
-						<input type="text" name="ano"
-								value="${carroedit.ano}" />
-					</label>
-					<label>
-						<span>Km:&nbsp;</span>
-						<input type="text" name="km"
-								value="${carroedit.km}" />
-					</label>
-					<label>
-						<span>Preço:&nbsp;</span>
-						<select name="preco">
+							</select> 
+									</td>
+									
+								<td>	
+								<input type="text" name="modelo" value="${carroedit.modelo}"/> </td>
+								<td><input type="text" name="placa"
+								value="${carroedit.placa}" /></td>
+								<td><input type="text" name="ano"
+								value="${carroedit.ano}" /></td>
+								<td><input type="text" name="km"
+								value="${carroedit.km}" /></td>
+								<td>
+							
+							<select name="preco">
 							<option value="${carroedit.idpreco}" selected>Manter tabela de preco atual</option>
 							<c:forEach items="${listadeprecos}" var="h">
 								<option value="${h.id}">${h.descricao}</option>
 							</c:forEach>
-						</select> 
-					</label>
-					<label>
-						<input type="submit" value="Salvar" name="btnSalvar">
-					</label>		
+							</select> 
+									</td>
+						
+					<input type="submit" value="Salvar" name="btnSalvar">
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" value="true" name="cadastro">
-						<label>
-							<span>Marca:&nbsp;</span>
+					<table>
+						<tr>
+							<td>
+							
 							<select name="marcas">
-								<c:forEach items="${listademarcas}" var="g">
-									<option value="${g.id}">${g.descricao}</option>
-								</c:forEach>
+							<c:forEach items="${listademarcas}" var="g">
+								<option value="${g.id}">${g.descricao}</option>
+							</c:forEach>
 							</select> 
-						</label>
-						<label>
-							<span>Modelo:&nbsp;</span>
-							<input type="text" name="modelo"/>
-						</label>
-						<label>
-							<span>Placa:&nbsp;</span>
-							<input type="text" name="placa"/>
-						</label>
-						<label>
-							<span>Ano:&nbsp;</span>
-							<input type="text" name="ano"/>
-						</label>
-						<label>
-							<span>KM:&nbsp;</span>
-							<input type="text" name="km"/>
-						</label>
-						<label>
-							<span>Preços:&nbsp;</span>
+									</td>
+									
+								<td>	
+								<input type="text" name="modelo"
+								placeholder="Modelo" /> </td>
+								<td><input type="text" name="placa"
+								placeholder="Placa" /></td>
+								<td><input type="text" name="ano"
+								placeholder="Ano" /></td>
+								<td><input type="text" name="km"
+								placeholder="KM" /></td>
+								<td>
+							
 							<select name="preco">
-								<c:forEach items="${listadeprecos}" var="h">
-									<option value="${h.id}">${h.descricao}</option>
-								</c:forEach>
+							<c:forEach items="${listadeprecos}" var="h">
+								<option value="${h.id}">${h.descricao}</option>
+							</c:forEach>
 							</select> 
-						</label>
-						<label>
-							<input type="submit" value="Salvar" name="btnSalvar">
-						</label>
+									</td>
+								
+							<td><input type="submit" value="Salvar" name="btnSalvar"></td>
+						</tr>
+					</table>
 				</c:otherwise>
 			</c:choose>
 			<hr>
@@ -115,11 +100,12 @@
 				<td width="150px">Marca</td>
 				<td width="150px">Modelo</td>
 				<td width="100px">Placa</td>
-				<td width="200px">Ano</td>
+				<td width="50px">Ano</td>
 				<td width="10px">KM</td>
-				<td width="100px">Preco</td>
+				<td width="200px">Preco</td>
 				<td> </td>
-			</tr>	
+			</tr>
+	
 			<c:choose>
 				<c:when test="${listagemCarros != null && listagemCarros.size() > 0}">
 					<c:forEach items="${listagemCarros}" var="d">
