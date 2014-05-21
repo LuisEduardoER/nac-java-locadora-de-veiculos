@@ -58,9 +58,7 @@
 					</label>
 					<label>
 						<span>Observações:&nbsp;</span>
-						<textarea name="data_loc">
-							
-						</textarea>
+						<textarea name="obs"></textarea>
 					</label>
 					
 					<label>
@@ -73,13 +71,12 @@
 			<tr style="font-weight: bold; text-align: center;">
 				<td width="10px">ID</td>
 				<td width="150px">Carro</td>
-				<td width="150px">Preço</td>
+				<td width="150px">Valor total</td>
 				<td width="100px">Cliente</td>
 				<td width="200px">Data da Locação</td>
-				<td width="10px">Qtd de dias</td>
-				<td width="100px">Data de Entrega</td>
+				<td width="10px">Dias</td>
 				<td>Situação</td>
-				<td>Desc. Pagamento</td>
+				<td>Pagamento</td>
 				<td>Obs.</td>
 			</tr>
 	
@@ -89,11 +86,10 @@
 						<tr>
 							<td>${d.id}</td>
 							<td>${d.carro}</td>
-							<td>${d.preco}</td>
+							<td>R$ ${d.preco*d.qtdDias}</td>
 							<td>${d.cliente}</td>
 							<td>${d.data_loc}</td>
 							<td>${d.qtdDias}</td>
-							<td>${d.data_entrega}</td>
 							<td>${d.dsSituacao}</td>
 							<td>${d.dsPagamento}</td>
 							<td>${d.obs}</td>

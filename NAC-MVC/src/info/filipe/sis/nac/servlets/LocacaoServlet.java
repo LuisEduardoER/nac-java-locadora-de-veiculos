@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/locacao")
-public class LocacaoServlet extends HttpServlet{
+public class LocacaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LocacaoDAO dao = new LocacaoDAO();
 	Logon logon = new Logon();
@@ -33,65 +33,32 @@ public class LocacaoServlet extends HttpServlet{
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		if(logon.isLogado(request, response)){
-//			if (request.getParameter("delete") != null
-//					&& request.getParameter("delete").equals("1")) {
-//				deletar(request, response);
-//			} else 
-			if (request.getParameter("edit") != null
-					&& request.getParameter("edit").equals("1")) {
-				selecteditar(request, response);
-			} else {
-				listar(request, response);
-			}			
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		if (logon.isLogado(request, response)) {
+			listar(request, response);
 		} else {
 			response.sendRedirect("login.jsp");
 		}
 	}
-	
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if(logon.isLogado(request, response)){
-			if (request.getParameter("cadastro") != null
-					&& request.getParameter("cadastro").equals("true")) {
-				// inclusao
-				cadastro(request, response);
-			} else if (request.getParameter("cadastro") != null
-					&& request.getParameter("cadastro").equals("false")) {
-				// update
-				atualizar(request, response);
-			}
+		if (logon.isLogado(request, response)) {
+			cadastro(request, response);
 		}
 	}
-	
-	private void selecteditar(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		Locacao l = dao.getPK(Integer.parseInt(request.getParameter("id")));
-		ArrayList<Carro> ca = cdao.getAll();
-		
-		ArrayList<Cliente> cl = cldao.getAll();
 
-		request.setAttribute("listadeCarros", ca);
-		request.setAttribute("listadeClientes", cl);
-
-		request.setAttribute("edicao", "true");
-		request.setAttribute("locacaoedit", l);
-
-		listar(request, response);
-	}
-	
 	private void listar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String pagina = "locacao.jsp";
 
 		ArrayList<Locacao> locacao = new ArrayList<Locacao>();
-		
+
 		locacao = dao.getAll();
-		
-		ArrayList<Carro> ca = cdao.getAll();
-		
+
+		ArrayList<Carro> ca = cdao.getAvailable();
+
 		ArrayList<Cliente> cl = cldao.getAll();
 
 		request.setAttribute("listagemLocacao", locacao);
@@ -102,30 +69,7 @@ public class LocacaoServlet extends HttpServlet{
 		dispatcher.forward(request, response);
 	}
 	
-	private void atualizar(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		Locacao l = new Locacao();
 
-		l.setId(Integer.parseInt(request.getParameter("id")));
-		l.setIdCliente(Integer.parseInt(request.getParameter("idcliente")));
-		l.setIdCarro(Integer.parseInt(request.getParameter("idcarro")));
-		l.setIdPreco(Integer.parseInt(request.getParameter("idpreco")));
-		l.setQtdDias(Integer.parseInt(request.getParameter("qtd_dias")));
-		l.setDsPagamento(request.getParameter("ds_pagamento"));
-		l.setDsSituacao(request.getParameter("ds_situacao"));
-		l.setData_entrega(request.getParameter("data_entrega"));
-		l.setData_loc(request.getParameter("data_loc"));
-
-		if (dao.devolucaoVeiculo(l)) {
-			request.setAttribute("status", "Locação atualizada com sucesso!");
-		} else {
-			request.setAttribute("status",
-					"Ocorreu uma falha ao atualizar locação.");
-		}
-
-		listar(request, response);
-	}
-	
 	private void cadastro(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -133,12 +77,12 @@ public class LocacaoServlet extends HttpServlet{
 
 		l.setIdCliente(Integer.parseInt(request.getParameter("idcliente")));
 		l.setIdCarro(Integer.parseInt(request.getParameter("idcarro")));
-	    l.setIdPreco(pdao.getIdPreco(Integer.parseInt(request.getParameter("idcarro"))));
+		l.setIdPreco(pdao.getIdPreco(Integer.parseInt(request
+				.getParameter("idcarro"))));
 		l.setQtdDias(Integer.parseInt(request.getParameter("qtd_dias")));
 		l.setDsPagamento(request.getParameter("ds_pagamento"));
-		l.setDsSituacao(request.getParameter("ds_situacao"));
-		l.setData_entrega((request.getParameter("data_entrega")));
 		l.setData_loc((request.getParameter("data_loc")));
+		l.setObs(request.getParameter("obs"));
 
 		if (dao.locarVeiculo(l)) {
 			request.setAttribute("cadastro", "true");
@@ -150,5 +94,5 @@ public class LocacaoServlet extends HttpServlet{
 
 		listar(request, response);
 	}
-	
+
 }
