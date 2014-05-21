@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +45,13 @@ public class LoginServlet extends HttpServlet {
 			Login l = new Login();
 			l.setUsuario(request.getParameter("login"));
 			l.setSenha(request.getParameter("passwd"));
+			
+			if((request.getParameter("lembrar") != null) && request.getParameter("lembrar").equals("true")){
+				Cookie c = new Cookie("usuario", "fulano");
+				c.setMaxAge(3600);
+				c.setPath("/");
+				response.addCookie(c);
+			}
 			
 			if(dao.verifyLogin(l)){
 				HttpSession session = request.getSession(true);

@@ -10,7 +10,6 @@ import info.filipe.sis.nac.dao.PrecoDAO;
 import info.filipe.sis.nac.login.Logon;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;

@@ -21,105 +21,22 @@
 		</c:choose>
 		<h1>Locação de Carros</h1>
 		<form action="locacao" method="post">
-			<c:choose>
-				<c:when test="${edicao != null && edicao.equals('true')}">
-					<p>Digite os dados corretos e confirme para atualizar</p>
-					
-					<input type="hidden" value="false" name="cadastro">
-					<input type="hidden" value="${locacaoedit.id}" name="id">
-					<label>						
-						<span>Carro:&nbsp;</span>
-						<select name="carros">
-							<option value="${locacaoedit.idCarro}" selected>Manter carro atual</option>
-								<c:forEach items="${listadeCarros}" var="g">
-									<option value="${g.id}">${g.modelo}</option>
-								</c:forEach>
-						</select>
-					</label> 
-					<!--  <label>
-						<span>Preço:&nbsp;</span>
-							<select name="precos">
-							<option value="${locacaoedit.idPreco}" selected>Manter preco atual</option>
-								<c:forEach items="${listadeprecos}" var="h">
-									<option value="${h.id}">${h.descricao}</option>
-								</c:forEach>
-							</select>
-					</label>
-					-->
-					<label>
-						<span>Cliente:&nbsp;</span>
-							<select name="idcliente">
-							<option value="${locacaoedit.idCliente}" selected>Manter cliente atual</option>
-								<c:forEach items="${listadeClientes}" var="i">
-									<option value="${i.id}">${i.nome}</option>
-								</c:forEach>
-							</select>
-					</label>
-									
-					<label>
-						<span>Data da Locação:&nbsp;</span>
-						<input type="text" name="data_loc"
-								value="${locacaoedit.data_loc}" />
-					</label>
-					<label>
-						<span>Qtd. de dias:&nbsp;</span>
-						<input type="text" name="qtd_dias"
-								value="${locacaoedit.qtdDias}" />
-					</label>
-					<label>
-						<span>Data da Entrega:&nbsp;</span>
-						<input type="text" name="data_entrega"
-								value="${locacaoedit.data_entrega}" />
-					</label>
-					<label>
-						<span>Situação:&nbsp;</span>
-						<input type="text" name="ds_sistuacao"
-								value="${locacaoedit.dsSituacao}" />
-					</label>
-					<label>
-						<span>Pagamento:&nbsp;</span>
-						<input type="text" name="ds_pagamento"
-								value="${locacaoedit.dsPagamento}" />
-					</label>
-					<label>
-						<span>Observações:&nbsp;</span>
-						<textarea name="data_loc">
-							${locacaoedit.data_loc}
-						</textarea>
-					</label>
-					
-					<label>
-						<input type="submit" value="Salvar" name="btnSalvar">
-					</label>					
-					
-				</c:when>
-				<c:otherwise>
 					<input type="hidden" value="true" name="cadastro">
-					<input type="hidden" value="${locacaoedit.id}" name="id">
 					<label>						
 						<span>Carro:&nbsp;</span>
 						<select name="idcarro">
 							<option value="-1" selected>Selecione...</option>
 								<c:forEach items="${listagemCarros}" var="g">
-									<option value="${g.id}">${g.modelo}</option>
+									<option value="${g.id}">${g.modelo} - ${g.placa}</option>
 								</c:forEach>
 						</select>
 					</label> 
-					<!-- <label>
-						<span>Preço:&nbsp;</span>
-							<select name="precos">
-							<option value="-1" selected>Selecione...</option>
-								<c:forEach items="${listadeprecos}" var="h">
-									<option value="${h.id}">${h.descricao}</option>
-								</c:forEach>
-							</select>
-					</label>-->
 					<label> 
 						<span>Cliente:&nbsp;</span>
 							<select name="idcliente">
 							<option value="-1" selected>Selecione...</option>
 								<c:forEach items="${listagemClientes}" var="i">
-									<option value="${i.id}">${i.nome}</option>
+									<option value="${i.id}">${i.nome} ${i.sobrenome}</option>
 								</c:forEach>
 							</select>
 					</label>
@@ -132,16 +49,6 @@
 					<label>
 						<span>Qtd. de dias:&nbsp;</span>
 						<input type="text" name="qtd_dias"
-								value="" />
-					</label>
-					<label>
-						<span>Data da Entrega:&nbsp;</span>
-						<input type="text" name="data_entrega"
-								value="" />
-					</label>
-					<label>
-						<span>Situação:&nbsp;</span>
-						<input type="text" name="ds_sistuacao"
 								value="" />
 					</label>
 					<label>
@@ -159,8 +66,6 @@
 					<label>
 						<input type="submit" value="Salvar" name="btnSalvar">
 					</label>		
-				</c:otherwise>
-			</c:choose>
 			<hr>
 		<h1>Registros</h1>
 	
@@ -182,7 +87,7 @@
 				<c:when test="${listagemLocacao != null && listagemLocacao.size() > 0}">
 					<c:forEach items="${listagemLocacao}" var="d">
 						<tr>
-							<td><a href="locacao?edit=1&id=${d.id}">${d.id}</a></td>
+							<td>${d.id}</td>
 							<td>${d.carro}</td>
 							<td>${d.preco}</td>
 							<td>${d.cliente}</td>
@@ -192,7 +97,7 @@
 							<td>${d.dsSituacao}</td>
 							<td>${d.dsPagamento}</td>
 							<td>${d.obs}</td>
-							<td><a href="locacao?delete=1&id=${d.id}">X</a></td>
+							<td><a href="locacao?action=devolve&id=${d.id}">Devolver</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>

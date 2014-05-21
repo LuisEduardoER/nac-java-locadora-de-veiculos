@@ -32,6 +32,8 @@ public class LoginDAO {
 			ResultSet result = stmt.executeQuery();
 			
 			if(result.next()){
+				stmt.close();
+				conn.close();
 				return true;
 			}
 
