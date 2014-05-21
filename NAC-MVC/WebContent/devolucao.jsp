@@ -17,10 +17,19 @@
 <% if(request.getAttribute("status") != null) {%>
 <script>
 	if (confirm("Locação finalizada com sucesso. Deseja pontuar o KM de Vantagens para o cliente?") == true) {
-		alert("Pontuado com sucesso!");
-	} 
+		window.location = "pontuar?idloc=${cliente}";
+	} else {
+		window.location = "locacao";
+	}
+</script>
+<%} %>
+<% if(request.getAttribute("pontuar") != null) {%>
+<script>
+	alert("<%=request.getAttribute("pontuar")%>");	
 	window.location = "locacao";
 </script>
 <%} %>
+
+
 </body>
 </html>

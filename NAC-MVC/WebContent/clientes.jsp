@@ -109,6 +109,7 @@
 							<td width="100px">Bairro</td>
 							<td width="100px">CEP</td>
 							<td width="100px">Nascimento</td>
+							<td width="100px">Pontos</td>
 							<td> </td>
 						</tr>
 					
@@ -125,6 +126,7 @@
 										<td>${d.bairro}</td>
 										<td>${d.cep}</td>
 										<td>${d.nascimento}</td>
+										<td>${d.pontos}</td>
 										<td><a href="clientes?delete=1&id=${d.id}">X</a></td>
 									</tr>
 								</c:forEach>
