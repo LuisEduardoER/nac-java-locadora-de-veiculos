@@ -111,7 +111,6 @@ public class CarroDAO {
 				ca.setIdpreco(result.getInt(7));
 				ca.setPreco(pdao.getPK(result.getInt(7)));
 				listcarros.add(ca);
-
 			}
 
 		} catch (SQLException ex) {
