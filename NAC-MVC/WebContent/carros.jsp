@@ -115,15 +115,15 @@
 				<td width="150px">Marca</td>
 				<td width="150px">Modelo</td>
 				<td width="100px">Placa</td>
-				<td width="200px">Ano</td>
+				<td width="100px">Ano</td>
 				<td width="10px">KM</td>
-				<td width="100px">Preco</td>
+				<td width="200px">Preco</td>
 				<td width="20px"> </td>
 			</tr>	
 			<c:choose>
 				<c:when test="${listagemCarros != null && listagemCarros.size() > 0}">
 					<c:forEach items="${listagemCarros}" var="d">
-						<tr>
+						<tr style="text-align: center;">
 							<td><a href="carros?edit=1&id=${d.id}">${d.id}</a></td>
 							<td>${d.marca}</td>
 							<td>${d.modelo}</td>

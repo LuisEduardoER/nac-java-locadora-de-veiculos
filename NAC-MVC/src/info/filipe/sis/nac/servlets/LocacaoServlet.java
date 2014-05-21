@@ -7,7 +7,6 @@ import info.filipe.sis.nac.dao.CarroDAO;
 import info.filipe.sis.nac.dao.ClienteDAO;
 import info.filipe.sis.nac.dao.LocacaoDAO;
 import info.filipe.sis.nac.dao.PrecoDAO;
-import info.filipe.sis.nac.login.Logon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LocacaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LocacaoDAO dao = new LocacaoDAO();
-	Logon logon = new Logon();
 	CarroDAO cdao = new CarroDAO();
 	ClienteDAO cldao = new ClienteDAO();
 	PrecoDAO pdao = new PrecoDAO();
@@ -35,18 +33,12 @@ public class LocacaoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if (logon.isLogado(request, response)) {
-			listar(request, response);
-		} else {
-			response.sendRedirect("login.jsp");
-		}
+		listar(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if (logon.isLogado(request, response)) {
-			cadastro(request, response);
-		}
+		cadastro(request, response);
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +60,6 @@ public class LocacaoServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
 		dispatcher.forward(request, response);
 	}
-	
 
 	private void cadastro(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

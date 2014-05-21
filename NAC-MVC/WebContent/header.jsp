@@ -8,10 +8,11 @@
 		<div id="navigation">
 			<ul>
 				<li class="first selected"><a href="index.jsp">Home</a></li>
-				<li><a href="clientes">Cadastro Cliente</a></li>
-				<li><a href="marcas">Cadastro de Marcas</a></li>
-				<li><a href="carros">Cadastro de Carros</a></li>
-				<li><a href="precos" >Cadastro de Preços</a></li>
+				<li><a href="cadastro" >Usuários</a></li>
+				<li><a href="clientes">Clientes</a></li>
+				<li><a href="marcas">Marcas</a></li>
+				<li><a href="carros">Carros</a></li>
+				<li><a href="precos" >Preços</a></li>
 				<li><a href="locacao">Locação</a></li>
 				<c:choose>
 					<c:when test="${sessionScope.logininfo != null}">

@@ -10,34 +10,33 @@
 	charset="utf-8" />
 </head>
 <body>
+<%if(session.getAttribute("logininfo") == null){ response.sendRedirect("index.jsp");}%>
 	<c:import url="header.jsp" />
 	<div id="adbox">
 		<div class="body">
 			<div class="details">
-				<c:choose>
+				
+				
+
+					<form action="cadastro" method="post">
+					
+								<h1>Cadastro</h1>
+					<c:choose>
 					<c:when test="${status != null}">
 				${status}
 			</c:when>
 				</c:choose>
-				<div id="box-login">
-
-					<form action="cadastro" method="post">
-						<c:choose>
-							<c:when test="${sessionScope.logininfo == null}">
-								<h1>Cadastro</h1>
-				
 								<label> <span style="color: #999">Login:&nbsp;</span> <input
-									type="text" name="usuario" value="">
+									type="text" name="usuario" value="${usereditdata.usuario}">
 								</label>
 								<label> <span style="color: #999">Senha:&nbsp;</span> <input
-									type="password" name="senha">
+									type="password" name="senha" value="${usereditdata.senha}">
 								</label>
+								<% if (request.getAttribute("usereditdata") != null) {%>
+								<input type="hidden" value="true" name="editar">
+								<input type="hidden" value="${usereditdata.id}" name="id">
+								<%} %>
 						<input style="margin-left: 150px" type="submit" value="Cadastrar">
-							</c:when>
-							<c:otherwise>
-								<h1>Sistema de Locação de Veículos LDTA</h1>
-							</c:otherwise>
-						</c:choose>
 					</form>
 					
 					<br />
@@ -47,6 +46,7 @@
 	<table>
 		<tr style="font-weight: bold; text-align: center;">
 			<td width="100px">Usuarios Cadastrados</td>
+			<td width="100px"></td>
 		</tr>
 
 		<c:choose>
@@ -54,6 +54,7 @@
 				<c:forEach items="${listauser}" var="d">
 					<tr>
 						<td><a href="cadastro?id=${d.id}">${d.usuario}</a></td>
+						<td><a href="cadastro?ide=${d.id}">X</a>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -71,7 +72,6 @@
 		<div class="footer">
 			<span class="bottom-shadow"></span>
 		</div>
-	</div>
 	<!-- /#adbox -->
 	<%
 		if (request.getAttribute("erro") != null) {
