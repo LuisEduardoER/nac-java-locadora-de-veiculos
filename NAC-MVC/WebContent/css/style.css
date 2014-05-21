@@ -35,7 +35,7 @@ h1
 	font-variant: small-caps;
 	text-transform: none;
 	font-weight: 200;
-	padding-top: 30px;
+	padding-top: 50px;
 	margin-left: 40px;
 }
 
@@ -55,7 +55,7 @@ table
 #header {
 	width: 960px;
 	margin: 0 auto;
-	padding: 40px 0;
+	padding-top: 20px;
 	position: relative;
 }
 
@@ -63,13 +63,13 @@ table
 #logo {
 	display: block;
 	padding: 0 0 35px 7px;
-	height: 150px;
+	height: 210px;
 	width: 100%;
 	margin: 0 0 -9px;
 }
 
 #logo a img{
-	height: 150px;
+	height: 210px;
 	width: 100%;
 	margin: 0 0 0 -7px;	
 }

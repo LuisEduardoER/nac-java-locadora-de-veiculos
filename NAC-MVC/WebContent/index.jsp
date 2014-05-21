@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Sistema de Aluguel de Carros</title>
+<title>Sistema de Locação de Veículos</title>
 <link rel="stylesheet" href="css/style.css" type="text/css"
 	charset="utf-8" />
 </head>
