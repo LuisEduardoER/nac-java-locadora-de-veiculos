@@ -20,12 +20,13 @@ public class CarroDAO {
 		try {
 			conn = DBConnectorSQLite.getConnection();
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 	}
 
 	public Boolean inserirCarro(Carro ca) {
 
-		String sql = "INSERT INTO carros VALUES (NULL, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO carros VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -35,12 +36,13 @@ public class CarroDAO {
 			stmt.setInt(4, ca.getAno());
 			stmt.setFloat(5, ca.getKm());
 			stmt.setInt(6, ca.getIdpreco());
+			stmt.setString(7, "false");
 
 			if (stmt.executeUpdate() == 1) {
 				return true;
 			}
 		} catch (SQLException ex) {
-
+			ex.printStackTrace();
 		}
 
 		return false;
@@ -81,7 +83,7 @@ public class CarroDAO {
 				return true;
 			}
 		} catch (SQLException ex) {
-
+			ex.printStackTrace();
 		}
 
 		return false;
@@ -113,6 +115,7 @@ public class CarroDAO {
 			}
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 
 		return listcarros;
@@ -145,6 +148,7 @@ public class CarroDAO {
 			}
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 
 		return listcarros;
@@ -172,6 +176,7 @@ public class CarroDAO {
 			}
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 		}
 
 		return ca;
