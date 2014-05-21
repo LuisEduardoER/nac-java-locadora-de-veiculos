@@ -27,7 +27,7 @@ public class LocacaoDAO {
 	
 	public Boolean locarVeiculo(Locacao l)
 	{
-		String sql = "INSERT INTO locacao VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO locacao VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, l.getIdCarro());
@@ -35,14 +35,16 @@ public class LocacaoDAO {
 			stmt.setInt(3, l.getIdCliente());
 			stmt.setString(4, l.getData_loc());
 			stmt.setInt(5, l.getQtdDias());
-			stmt.setString(6, l.getData_entrega());
+			stmt.setString(6, "LOCADO");
 			stmt.setString(7, l.getDsPagamento());
-			stmt.setString(8, l.getDsSituacao());
-			stmt.setString(9, l.getObs());
+			stmt.setString(8, l.getObs());
 			
 			if(stmt.executeUpdate() == 1)
 			{
-				return true;
+				CarroDAO carroDAO = new CarroDAO();
+				if(carroDAO.locar(l.getIdCarro())){
+					return true;					
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,10 +97,9 @@ public class LocacaoDAO {
 				l.setCliente(cldao.getPK(result.getInt(4)));
 				l.setData_loc(result.getString(5));
 				l.setQtdDias(result.getInt(6));
-				l.setData_entrega(result.getString(7));
-				l.setDsSituacao(result.getString(8));
-				l.setDsPagamento(result.getString(9));
-				l.setObs(result.getString(10));
+				l.setDsSituacao(result.getString(7));
+				l.setDsPagamento(result.getString(8));
+				l.setObs(result.getString(9));
 				locacoes.add(l);
 			}
 			
