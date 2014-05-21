@@ -55,22 +55,22 @@ public class LocacaoDAO {
 	
 	public Boolean devolucaoVeiculo(Locacao l)
 	{
-		String sql = "UPDATE locacao SET data_entrega = ?,ds_situacao = ?,ds_pagamento = ?,obs =  ? WHERE id = ?;";
+		String sql = "UPDATE locacao SET ds_situacao = ? WHERE id = ?;";
 		
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(6, l.getData_entrega());
-			stmt.setString(7, l.getDsPagamento());
-			stmt.setString(8, l.getDsSituacao());
-			stmt.setString(9, l.getObs());
-			stmt.setInt(5, l.getId());
+			stmt.setString(1, "DEVOLVIDO");
+			stmt.setInt(2, l.getId());
 			
 			if(stmt.executeUpdate() == 1)
 			{
-				return true;
+				CarroDAO carroDAO = new CarroDAO();
+				if(carroDAO.devolver(l.getIdCarro())){
+					return true;					
+				}
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return false;
@@ -131,7 +131,7 @@ public class LocacaoDAO {
 				l.setDsPagamento(result.getString(9));
 				l.setObs(result.getString(10));
 			}
-			
+
 		} catch (SQLException ex) {
 		}
 		

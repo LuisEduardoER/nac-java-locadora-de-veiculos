@@ -87,13 +87,13 @@
 							<td>${d.id}</td>
 							<td>${d.carro}</td>
 							<td>R$ ${d.preco*d.qtdDias}</td>
-							<td>${d.cliente}</td>
+							<td>${d.cliente} ${i.sobrenome}</td>
 							<td>${d.data_loc}</td>
 							<td>${d.qtdDias}</td>
 							<td>${d.dsSituacao}</td>
 							<td>${d.dsPagamento}</td>
 							<td>${d.obs}</td>
-							<td><a href="locacao?action=devolve&id=${d.id}">Devolver</a></td>
+							<td><a href="devolucao?id=${d.id}&carro=${d.idCarro}">Devolver</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>

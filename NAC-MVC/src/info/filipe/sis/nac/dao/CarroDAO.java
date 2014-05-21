@@ -57,7 +57,7 @@ public class CarroDAO {
 				return true;
 			}
 		} catch (SQLException ex) {
-
+			ex.printStackTrace();
 		}
 
 		return false;
