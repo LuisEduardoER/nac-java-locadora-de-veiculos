@@ -65,14 +65,14 @@
 		</div>
 	</div>
 	<!-- /#adbox -->
+	<%
+		if (request.getAttribute("erro") != null) {
+	%>
+	<script>
+		alert("Login ou senha incorretos!");
+	</script>
+	<%
+		}
+	%>
 </body>
 </html>
-<%
-	if (request.getAttribute("erro") != null) {
-%>
-<script>
-	alert("Login ou senha incorretos!")
-</script>
-<%
-	}
-%>
