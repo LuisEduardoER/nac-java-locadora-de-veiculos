@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	LoginDAO dao = new LoginDAO();
+
 	
 	String pagina = "";
 	
@@ -47,12 +47,12 @@ public class LoginServlet extends HttpServlet {
 			l.setSenha(request.getParameter("passwd"));
 			
 			if((request.getParameter("lembrar") != null) && request.getParameter("lembrar").equals("true")){
-				Cookie c = new Cookie("usuario", "fulano");
+				Cookie c = new Cookie("usuario", request.getParameter("login"));
 				c.setMaxAge(3600);
 				c.setPath("/");
 				response.addCookie(c);
 			}
-			
+			LoginDAO dao = new LoginDAO();
 			if(dao.verifyLogin(l)){
 				HttpSession session = request.getSession(true);
 				session.setAttribute("logininfo", l);
