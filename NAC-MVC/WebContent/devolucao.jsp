@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Devolução</title>
 </head>
 <body>
+<%if(session.getAttribute("logininfo") == null){ response.sendRedirect("index.jsp");}%>
 <%if(request.getAttribute("erro") != null)
 {%>
 	<script>alert("<%=request.getAttribute("erro")%>");

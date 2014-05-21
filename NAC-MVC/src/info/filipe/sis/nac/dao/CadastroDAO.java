@@ -40,7 +40,7 @@ public class CadastroDAO {
 	}
 	
 	public Boolean alteraSenha(Login lo) {
-		String sql = "UPDATE carros SET senha = ? WHERE id = ?;";
+		String sql = "UPDATE usuarios SET senha = ? WHERE id = ?;";
 		
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);;
@@ -80,6 +80,47 @@ public class CadastroDAO {
 			}
 
 			return listuser;
+	}
+	
+	public Login getPK(int id) {
+
+		String sql = "SELECT * FROM usuarios WHERE id = ?";
+		Login log = new Login();
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			
+			ResultSet result = stmt.executeQuery();
+			
+			while (result.next()) {					
+				log.setId(result.getInt(1));
+				log.setUsuario(result.getString(2));
+				log.setSenha(result.getString(3));
+			}
+			
+		} catch (SQLException ex) {
+		}
+		
+
+		return log;
+	}
+	
+	public Boolean deletar(int id) {
+		String sql = "DELETE FROM usuarios WHERE id = ?";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+
+			if (stmt.executeUpdate() == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 	
 }

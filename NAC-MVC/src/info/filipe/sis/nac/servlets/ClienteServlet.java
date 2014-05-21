@@ -2,7 +2,6 @@ package info.filipe.sis.nac.servlets;
 
 import info.filipe.sis.nac.bean.Cliente;
 import info.filipe.sis.nac.dao.ClienteDAO;
-import info.filipe.sis.nac.login.Logon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ClienteDAO dao = new ClienteDAO();
-	Logon logon = new Logon();
 
 	public ClienteServlet() {
 		super();
@@ -26,34 +24,30 @@ public class ClienteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if(logon.isLogado(request, response)){
-			if (request.getParameter("delete") != null
-					&& request.getParameter("delete").equals("1")) {
-				deletar(request, response);
-			} else if (request.getParameter("edit") != null
-					&& request.getParameter("edit").equals("1")) {
-				selecteditar(request, response);
-			} else {
-				listar(request, response);
-			}			
+
+		if (request.getParameter("delete") != null
+				&& request.getParameter("delete").equals("1")) {
+			deletar(request, response);
+		} else if (request.getParameter("edit") != null
+				&& request.getParameter("edit").equals("1")) {
+			selecteditar(request, response);
 		} else {
-			response.sendRedirect("login.jsp");
+			listar(request, response);
 		}
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		if(logon.isLogado(request, response)){
-			if (request.getParameter("cadastro") != null
-					&& request.getParameter("cadastro").equals("true")) {
-				// inclusao
-				cadastro(request, response);
-			} else if (request.getParameter("cadastro") != null
-					&& request.getParameter("cadastro").equals("false")) {
-				// update
-				atualizar(request, response);
-			}
+
+		if (request.getParameter("cadastro") != null
+				&& request.getParameter("cadastro").equals("true")) {
+			// inclusao
+			cadastro(request, response);
+		} else if (request.getParameter("cadastro") != null
+				&& request.getParameter("cadastro").equals("false")) {
+			// update
+			atualizar(request, response);
 		}
 	}
 
